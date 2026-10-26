@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert");
-const { countWords, slugify, truncate } = require("../src/words");
+const { countWords, slugify, truncate, reverseWords } = require("../src/words");
 
 test("countWords counts whitespace-separated words", () => {
   assert.strictEqual(countWords("one two  three"), 3);
@@ -12,4 +12,12 @@ test("slugify makes a url slug", () => {
 test("truncate shortens with an ellipsis", () => {
   assert.strictEqual(truncate("abcdef", 4), "abc…");
   assert.strictEqual(truncate("abc", 4), "abc");
+});
+test("reverseWords reverses word order but not characters", () => {
+  assert.strictEqual(reverseWords("one two three"), "three two one");
+  assert.strictEqual(reverseWords("  alpha   beta  "), "beta alpha");
+});
+test("reverseWords returns empty string for whitespace-only input", () => {
+  assert.strictEqual(reverseWords("   \t  "), "");
+  assert.strictEqual(reverseWords(""), "");
 });
