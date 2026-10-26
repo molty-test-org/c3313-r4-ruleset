@@ -17,6 +17,9 @@ test("reverseWords reverses word order but not characters", () => {
   assert.strictEqual(reverseWords("one two three"), "three two one");
   assert.strictEqual(reverseWords("  alpha   beta  "), "beta alpha");
 });
+test("reverseWords collapses repeated spaces between words", () => {
+  assert.strictEqual(reverseWords("a   b    c"), "c b a");
+});
 test("reverseWords returns empty string for whitespace-only input", () => {
   assert.strictEqual(reverseWords("   \t  "), "");
   assert.strictEqual(reverseWords(""), "");
